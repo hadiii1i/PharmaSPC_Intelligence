@@ -19,7 +19,7 @@ PharmaSPC Intelligence solves this by providing **automatic, real-time SPC analy
 ---
 
 ## Dashboard Preview
-
+![Dashboard](docs/screenshotofui1.png)
 | Section | Description |
 |---|---|
 | 📋 Data Overview | Upload CSV, preview measurements |
@@ -29,6 +29,7 @@ PharmaSPC Intelligence solves this by providing **automatic, real-time SPC analy
 | 🔍 Investigation Assistant | Detected issues + probable causes + action steps |
 
 ---
+
 
 ## Features
 
@@ -55,7 +56,7 @@ When a rule fires, the system automatically generates:
 - Ordered investigation steps
 
 > No external AI API required. The assistant is fully rule-based and deterministic — zero cost to run.
-
+![Dashboard](docs/screenshotofui2.png)
 ### Data Management
 - CSV file upload with automatic validation
 - Missing value detection and removal
