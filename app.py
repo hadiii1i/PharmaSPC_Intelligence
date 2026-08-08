@@ -21,6 +21,8 @@ from stats.basic_stats import (
     interpret_cpk,
 )
 from charts.spc_charts import create_xbar_chart, create_r_chart, create_histogram
+from rules.rule_engine import run_all_rules
+from rules.assistant import generate_recommendations
 
 # ---------------------------------------------------------------------------
 # Page config
@@ -344,6 +346,42 @@ with tab3:
     )
     st.plotly_chart(fig_hist, use_container_width=True)
     st.caption("Red dashed lines show Upper and Lower Specification Limits.")
+
+# ---------------------------------------------------------------------------
+# Section 5: Investigation Assistant
+# ---------------------------------------------------------------------------
+st.divider()
+st.markdown('<div class="section-header">🔍 Investigation Assistant</div>', unsafe_allow_html=True)
+
+rule_results = run_all_rules(
+    measurements=measurements,
+    ucl=limits["ucl"],
+    lcl=limits["lcl"],
+    centerline=limits["centerline"],
+)
+
+recommendations = generate_recommendations(rule_results)
+
+for rec in recommendations:
+    if rec["severity"] == "critical":
+        icon = "🔴"
+    elif rec["severity"] == "warning":
+        icon = "🟡"
+    else:
+        icon = "🟢"
+
+    with st.expander(f"{icon} {rec['title']}", expanded=rec["severity"] == "critical"):
+        st.markdown("**Finding:**")
+        st.info(rec["finding"])
+
+        if rec["probable_causes"]:
+            st.markdown("**Probable Causes:**")
+            for cause in rec["probable_causes"]:
+                st.markdown(f"- {cause}")
+
+        st.markdown("**Recommended Investigation Steps:**")
+        for i, step in enumerate(rec["investigation_steps"], 1):
+            st.markdown(f"{i}. {step}")
 
 # ---------------------------------------------------------------------------
 # Footer
