@@ -23,7 +23,7 @@ from stats.basic_stats import (
 from charts.spc_charts import create_xbar_chart, create_r_chart, create_histogram
 from rules.rule_engine import run_all_rules
 from rules.assistant import generate_recommendations
-
+from reports.pdf_report import generate_pdf_report
 # ---------------------------------------------------------------------------
 # Page config
 # ---------------------------------------------------------------------------
@@ -383,6 +383,49 @@ for rec in recommendations:
         for i, step in enumerate(rec["investigation_steps"], 1):
             st.markdown(f"{i}. {step}")
 
+# ---------------------------------------------------------------------------
+# Section 6: Export PDF Report
+# ---------------------------------------------------------------------------
+st.divider()
+st.markdown('<div class="section-header">📄 Export Report</div>', unsafe_allow_html=True)
+
+from reports.pdf_report import generate_pdf_report
+
+# Build stats dict for report
+stats_for_report = {
+    "mean": mean_val,
+    "std_dev": std_val,
+    "range": range_val,
+    "count": len(measurements),
+}
+
+try:
+    pdf_bytes = generate_pdf_report(
+        process_name="Pharmaceutical Manufacturing",
+        parameter_name=measurement_column,
+        unit="mg",
+        measurements=measurements,
+        stats=stats_for_report,
+        limits=limits,
+        cp=cp_val,
+        cpk=cpk_val,
+        usl=usl,
+        lsl=lsl,
+        interpretation=interpretation,
+        rule_results=rule_results,
+        recommendations=recommendations,
+    )
+
+    st.download_button(
+        label="⬇️ Download PDF Report",
+        data=pdf_bytes,
+        file_name=f"PharmaSPC_Report_{measurement_column}.pdf",
+        mime="application/pdf",
+        use_container_width=True,
+    )
+
+except Exception as e:
+    st.error(f"❌ Could not generate PDF report: {e}")
 # ---------------------------------------------------------------------------
 # Footer
 # ---------------------------------------------------------------------------
