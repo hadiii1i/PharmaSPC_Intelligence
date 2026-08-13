@@ -27,7 +27,9 @@ PharmaSPC Intelligence solves this by providing **automatic, real-time SPC analy
 | 🎯 Process Capability | Cp, Cpk with plain-language interpretation |
 | 📈 SPC Charts | X-Bar, R Chart, Histogram |
 | 🔍 Investigation Assistant | Detected issues + probable causes + action steps |
-
+---
+## Complete Review
+![PDF Report Preview](docs/completereview.gif)
 ---
 
 
@@ -161,7 +163,8 @@ sample_id,weight_mg
 ```
 
 Upload it from the sidebar to explore all dashboard features.
-
+## Sample PDF Report
+![PDF Report Preview](docs/pdf_preview.png)
 ---
 
 ## Pharmaceutical Use Cases
