@@ -81,7 +81,7 @@ PharmaSPC_Intelligence/
 │       ├── rule_engine.py  # Western Electric rule detection
 │       └── assistant.py    # Rule-based recommendation engine
 ├── tests/
-│   ├── test_basic_stats.py     # 7 tests
+│   ├── test_basic_stats.py     # 18 tests
 │   ├── test_data_loader.py     # 7 tests
 │   ├── test_spc_charts.py      # 9 tests
 │   └── test_rule_engine.py     # 12 tests
@@ -143,7 +143,7 @@ Open `http://localhost:8501` in your browser.
 pytest tests/ -v
 ```
 
-Expected output: **35 tests passing**
+Expected output: **46 tests passing**
 
 ---
 
@@ -179,7 +179,7 @@ The system supports any numeric measurement parameter, including:
 | Phase | Status | Description |
 |---|---|---|
 | Phase 1 | ✅ Complete | CSV upload, statistical analysis, SPC charts, rule detection, investigation assistant |
-| Phase 2 | 🔲 Planned | PDF/Excel report generation |
+| Phase 2 | ✅ Complete | PDF report generation |
 | Phase 3 | 🔲 Planned | SQLite database, historical trend analysis |
 | Phase 4 | 🔲 Planned | User management, CAPA integration |
 
@@ -198,19 +198,20 @@ pytest tests/test_rule_engine.py -v
 
 | Module | Tests |
 |---|---|
-| basic_stats.py | 7 |
+| basic_stats.py | 18 |
 | data_loader.py | 7 |
 | spc_charts.py | 9 |
 | rule_engine.py | 12 |
-| **Total** | **35** |
+| **Total** | **46** |
 
 ---
 
 ## Author
 
-**Hadi**  
+**Hadi Yabari**  
 GitHub: [@hadiii1i](https://github.com/hadiii1i)
 
+Linkdin: [@hadiii1i](https://www.linkedin.com/in/hadi-yabari/)
 ---
 
 ## License
